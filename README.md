@@ -1,4 +1,4 @@
-# HR Project 2 – Candidate Management System
+# HR Project 2 – Job Posting and Application Portal
 
 ## 📌 Project Description
 This is a full-stack **HR candidate management system** built with:
