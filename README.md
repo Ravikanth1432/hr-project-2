@@ -1,7 +1,7 @@
 # HR Project 2 – Job Posting and Application Portal
 
 ## 📌 Project Description
-This is a full-stack **HR candidate management system** built with:
+This is a full-stack **Job Posting and Application Portal** built with:
 - **Backend:** FastAPI (Python) with MySQL
 - **Frontend:** React (Vite)
 - **Database:** MySQL Workbench
