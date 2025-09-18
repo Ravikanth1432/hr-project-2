@@ -66,3 +66,20 @@ def apply(job_id: int, payload: schemas.ApplyPayload, session: Session = Depends
     if err:
         raise HTTPException(status_code=400, detail=err)
     return {"detail": "applied", "candidate_id": payload.candidate_id, "job_id": job_id}
+
+# update candidate
+@app.put("/api/candidates/{candidate_id}")
+def update_candidate(candidate_id: int, payload: schemas.CandidateCreate, session: Session = Depends(get_session)):
+    existing = crud.get_candidate(session, candidate_id)
+    if not existing:
+        raise HTTPException(status_code=404, detail="Candidate not found")
+    updated = crud.update_candidate(session, candidate_id, payload.dict())
+    return updated
+
+# delete candidate
+@app.delete("/api/candidates/{candidate_id}")
+def delete_candidate(candidate_id: int, session: Session = Depends(get_session)):
+    ok = crud.delete_candidate(session, candidate_id)
+    if not ok:
+        raise HTTPException(status_code=404, detail="Candidate not found")
+    return {"detail": "deleted"}
