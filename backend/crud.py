@@ -48,3 +48,25 @@ def get_applicants_for_job(session: Session, job_id: int):
         return None
     # job.applicants is available due to relationship
     return job.applicants
+# add to crud.py
+
+def update_candidate(session: Session, candidate_id: int, data: dict):
+    cand = session.get(Candidate, candidate_id)
+    if not cand:
+        return None
+    # update fields present in data
+    for k, v in data.items():
+        if hasattr(cand, k):
+            setattr(cand, k, v)
+    session.add(cand)
+    session.commit()
+    session.refresh(cand)
+    return cand
+
+def delete_candidate(session: Session, candidate_id: int):
+    cand = session.get(Candidate, candidate_id)
+    if not cand:
+        return False
+    session.delete(cand)
+    session.commit()
+    return True
